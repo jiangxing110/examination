@@ -385,6 +385,10 @@ FROM Customers LEFT OUTER JOIN Orders
 ON Customers.cust_id = Orders.cust_id;
 ```
 
+LEFT JOIN 会读取左边数据表的全部数据，即便右边表无对应数据。
+
+JOIN 会读取右边数据表的全部数据，即便左边边表无对应数据。
+
 #### 11.组合查询
 
 使用 **UNION** 来组合两个查询，如果第一个查询返回 M 行，第二个查询返回 N 行，那么组合查询的结果一般为 M+N 行。
