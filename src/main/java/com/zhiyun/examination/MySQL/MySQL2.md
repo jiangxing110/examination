@@ -14,7 +14,12 @@
 14 mysql是怎么备份的
 15 找出当前目录30天之前的文件，并删除
 16 主从复制出错怎么解决
-17 mysql的配置文件位置
+17 **mysql的配置文件位置**
+ 
+   1、Windows下MySQL的配置文件是my.ini，一般会在安装目录的根目录。
+   2、Linux下MySQL的配置文件是my.cnf，一般会放在/etc/my.cnf，/etc/mysql/my.cnf。如果找不到，可以用find命令查找。
+   3、Linux用rpm包安装的MySQL是不会安装/etc/my.cnf文件的
+   
 18 “mysql 四种操作操作是什么
 19 “增删改查 你觉得那个最占用资源
 20 mysql 简单的 怎么登入 怎么创建数据库bbb创建 用户 密码 授权
@@ -25,21 +30,20 @@
 25 MySQL语句调优会不会？用的什么工具？
 26 MySQL索引你会么？平时怎么用的？你是每个表都加上索引么？你怎么确定你加上索引后速度会快？
 27 对数据库这方面有没有什么培训打算。
-28 oracle日常管理都做哪些
-29 oracle加过索引吗
+
 30 b数索引对更新数据有什么影响
 31 你们用软件处理过的数据量有多少，处理过上百万的数据吗
 32 哦，你们还有转业的dba，你做过什么
 33 你迁移多少数据量
 34 mysql 数据库的备份与还原 例如一个数据库test
 35 mysql都做了哪些，是你自己搭建的么？
-36 oracle你都会什么？
+
 37 了解非关系性数据库么
 38 Mysql之前用过什么引擎
 39 Mysql怎么解决故障切换
 40 Mysql都有那几种日志
 41 为什么你们用apache不用nginx
-42 SQL server的备份与恢复
+42 
 43 mysql用的是什么？主从？
 44 mysql数据库的备份，用的是脚本？
 45 mysql 主从数据库的搭建，配置的命令
@@ -53,7 +57,7 @@
 53 写出至少5种Oracle文件类型
 54 主从复制在停机和不停机情况下，分别怎么加从服务器
 55 Sybase数据库相关的东西很多
-56 索引的创建（index)
+56 索引的创建（index) create index index_table(id);
 57 表空间的创建、迁移
 58 如何利用存储过程提高数据库读取的性能。
 59 选择不同的存储引擎，对数据库的工作有何影响
@@ -65,12 +69,20 @@
 65 把数据分开放在不同的表空间，利与弊？
 66 如何实现MySQL服务器的冗余。
 67 查看是否安装了mysql
-68 启动mysql，进入mysql
+    mysql -v
+
+68 启动mysql，进入mysql 
+     mysqld -u root -p
 69 查看oracle是否运行，有多少个数据库
 70 怎么样进入oracle
 71 查看oracle的用户
 72 oracle的登录方式
 73 mysql怎么样，主从复制做过吗，怎样查看复制的状态
+   show slave status \G 这个是查看从机复制状态，里面的参数很多，你要留意
+   Slave_IO_Running:
+   Slave_SQL_Running: 这两个参数的状态，正常是YES，如果是no，那么主从复制肯定是有问题的
+   第一个参数是复制主库的binlog文件的线程，第二个是执行复制过来的binlog二进制文件，可以理解为编译成sql，并执行。
+   主机的话你只要查看show master status;即可，只要有值，那么主库是支持主从复制的，就是说其他从机可以从主机上复制binlog文件
 74 oracle rac与一般DB的区别？
 75 数据库有几种数据保护方式（AAA）
 76 session是否被锁怎么看，写出查询与处理过程
@@ -157,22 +169,17 @@
 162 写出mysql怎么修改密码？怎么修复损坏的表？
 163 mysql用户test 只能由abc.com访问test表且test只能访问test密码testpasswd
 164 mysql的备份，数据的导入
-165 oracle数据库的安装过程
-166 oracle中创建数据库
-167 用oracle用户test登录数据库，密码test
-168 创建oracle表空间
+
 169 ls，rm，man，vi的含义与作用
 170 mysql数据库中多个表结合查询
 171 在系统中有个sql文件，怎么在数据库中执行sql文件中的命令
-172 mysql的ab复制的原理
+172 mysql的ab复制(主从)的原理
 173 mysql主从复制数据丢失怎么知道的
 174 mysql优化
 175 mysql备份流程
-176 mysql主从原理
+
 177 书写出mysql常用的命令，以及备份命令
 178 写出mysql怎么修改密码？怎么修复损坏的表？
-179 Oracle用什么备份
-180 都使用过什么数据库？Oracle、mysql？Mysql主从压力大的时候，怎么在不影响业务的前提下，在加入一台mysql
+
 181 mysql数据库用的多吗
 182 mysql复制
-183 oracle dataguard
