@@ -521,6 +521,35 @@ UPDATE 触发器包含一个名为 NEW 和一个名为 OLD 的虚拟表，其中
 
 MySQL 不允许在触发器中使用 CALL 语句，也就是不能调用存储过程。
 
+### 16.索引
+
+  索引的目的在于提高查询效率，可以类比字典，如果要查“mysql”这个单词，我们肯定需要定位到m字母，然后从下往下找到y字母，
+  再找到剩下的sql。如果没有索引，那么你可能需要把所有单词看一遍才能找到你想要的。除了词典，生活中随处可见索引的例子，
+  如火车站的车次表、图书的目录等。它们的原理都是一样的，通过不断的缩小想要获得数据的范围来筛选出最终想要的结果，同时把随机
+  的事件变成顺序的事件，也就是我们总是通过同一种查找方式来锁定数据
+  
+  #SELECT * FROM cell_store_set_ios WHERE site_id=124015
+  #[SQL]SELECT * FROM cell_store_set_ios WHERE site_id=124015
+  
+  #受影响的行: 0时间: 0.002s
+  #CREATE INDEX siteId ON cell_store_set_ios(site_id); 
+  #SELECT * FROM cell_store_set_ios WHERE site_id=124015
+  #受影响的行: 0
+  #时间: 0.001s
+  #删除索引
+  #DROP INDEX siteId on cell_store_set_ios;
+  #创建组合索引
+  #ALTER TABLE cell_store_set_ios ADD INDEX index_cell(rack_no(20),cur_status(10));
+  #删除索引
+  #drop INDEX index_cell ON cell_store_set_ios;
+  #查询
+  #SELECT * FROM cell_store_set_ios WHERE rack_no="0006" AND cur_status="US001";
+  #时间: 0.001s   不用    0.002s
+  #唯一索引
+  #CREATE UNIQUE INDEX site_id on cell_store_set_ios(site_id);
+  #DROP INDEX site_id on cell_store_set_ios;
+  #EXPLAIN SELECT * FROM cell_store_set_ios WHERE site_id=124015
+
 ### 事务管理
 
 基本术语：
